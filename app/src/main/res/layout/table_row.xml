@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:background="@color/backgray"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/date_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:text="hello"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/row_img"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:src="@drawable/ic_clear_day"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/templow"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="hello"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/temphigh"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="hello"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+</LinearLayout>
