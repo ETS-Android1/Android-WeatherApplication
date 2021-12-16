@@ -95,10 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(int resultCode, String responseBody) {
                         Suggestion s = Suggestion.deserialize(responseBody);
                         newsAdapter.clear();
-                        for (String e: s.suggestion) {
-                            newsAdapter.add(e);
-                        }
-                        newsAdapter.notifyDataSetChanged();
+                        newsAdapter.addAll(s.suggestion);
                     }
                 });
                 return false;

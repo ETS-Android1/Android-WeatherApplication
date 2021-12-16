@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/black"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    tools:context=".hw9_2.DetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="70dp"
             app:tabBackground="@color/black"
             app:tabIndicatorColor="@color/white"
             android:background="@color/backgray" />

@@ -21,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         
         SimpleHttp.get("https://ipinfo.io/?token=09035606870157", (i, s) -> {
             try {
+
                 JSONObject jsonObject = new JSONObject(s);
                 Statics.currentLocation = jsonObject.getString("city") + ","+jsonObject.getString("region");
                 new Handler().postDelayed(() -> {

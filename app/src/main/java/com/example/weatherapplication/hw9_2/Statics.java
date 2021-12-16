@@ -17,6 +17,21 @@ public class Statics {
 
     public static ArrayList<String> prefs = new ArrayList<>();
 
+    public static int tempInF(String val) {
+        double fahrenheit = (9.0/5.0)*Double.parseDouble(val) + 32;
+        return (int)fahrenheit;
+    }
+
+    public static double Twodecimal(String val) {
+        double fahrenheit = (9.0/5.0)*Double.parseDouble(val) + 32;
+        fahrenheit /= 100;
+        return (double)((int)(fahrenheit*100))/ (double)100;
+    }
+
+    public static String tempInFwithF(String val) {
+        return tempInF(val) + "°F";
+    }
+
     static {
         drawableMap.put("1000", R.drawable.ic_clear_day);
         drawableMap.put("1001", R.drawable.ic_cloudy);

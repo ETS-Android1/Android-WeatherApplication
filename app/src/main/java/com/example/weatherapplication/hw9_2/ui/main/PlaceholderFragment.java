@@ -1,6 +1,7 @@
 package com.example.weatherapplication.hw9_2.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -129,20 +130,22 @@ public class PlaceholderFragment extends Fragment {
             stops.add(new HIStop(1, HIColor.initWithName("SkyBlue")));
             series.setFillColor(HIColor.initWithLinearGradient(gradient, stops));
 
-            Object[][] seriesData = new Object[16][3];
+            Object[][] seriesData = new Object[15][3];
 
             try {
                 JSONArray jsonArray = new JSONArray(Statics.weatherDetails);
-                for(int i=0; i<jsonArray.length(); i++) {
+                for(int i=0; i<jsonArray.length() && i < 15; i++) {
                     JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
 
                     String pk = jsonObject.getString("date");
                     Date date = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")).parse(pk.replaceAll("Z$", "+0000"));
 
                     seriesData[i][0] = date.getTime();
-                    seriesData[i][1] = Double.parseDouble(jsonObject.getString("tempmin"));
-                    seriesData[i][2] = Double.parseDouble(jsonObject.getString("tempmax"));
+                    seriesData[i][1] = Statics.tempInF(jsonObject.getString("tempmin"));
+                    seriesData[i][2] = Statics.tempInF(jsonObject.getString("tempmax"));
                 }
+
+                Log.d("abcd", "bc" + Arrays.deepToString(seriesData));
             } catch (JSONException | ParseException e) {
                 e.printStackTrace();
             }
@@ -166,7 +169,7 @@ public class PlaceholderFragment extends Fragment {
 
                 a = Integer.parseInt(jsonObject.getString("cloud"));
                 b = Integer.parseInt(jsonObject.getString("precipitation"));
-                c = Integer.parseInt(jsonObject.getString("humidity"));
+                c = (int)Double.parseDouble(jsonObject.getString("humidity"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

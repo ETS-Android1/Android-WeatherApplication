@@ -78,11 +78,11 @@ public class PlaceTodayWeatherFragment extends Fragment {
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.place_todays_weather_fragment, container, false);
 
-        if (mIndex == 0) {
-            view.findViewById(R.id.plusminus).setVisibility(View.GONE);
-        } else {
-            view.findViewById(R.id.plusminus).setVisibility(View.VISIBLE);
-        }
+//        if (mIndex == 0) {
+//            view.findViewById(R.id.plusminus).setVisibility(View.GONE);
+//        } else {
+//            view.findViewById(R.id.plusminus).setVisibility(View.VISIBLE);
+//        }
 
         view.findViewById(R.id.plusminus).setVisibility((mIndex == 0 || mWeakReferenceFragment.get() == null)?View.GONE: View.VISIBLE);
         view.findViewById(R.id.plusminus).setOnClickListener(v -> {
@@ -116,8 +116,8 @@ public class PlaceTodayWeatherFragment extends Fragment {
 
 
                     params = "latitude=" + jsonObject.get("lat") + "&longitude=" + jsonObject.get("lat");
-//                    SimpleHttp.get("https://nodejs-329516.wl.r.appspot.com/weatherInfo?" + params, (ii, ss) -> {
-                    SimpleHttp.get("https://nodejs-329516.wl.r.appspot.com/sample?" + params, (ii, ss) -> {
+                    SimpleHttp.get("https://nodejs-329516.wl.r.appspot.com/weatherInfo?" + params, (ii, ss) -> {
+//                    SimpleHttp.get("https://nodejs-329516.wl.r.appspot.com/sample?" + params, (ii, ss) -> {
                         thisLocationDetails = ss;
                         detailsAvailable(view, ss);
                         Log.d(PlaceTodayWeatherFragment.class.getName(), ss);
@@ -144,7 +144,7 @@ public class PlaceTodayWeatherFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(ss);
             JSONObject firstOne = new JSONObject(jsonArray.get(0).toString());
 
-            ((TextView)view.findViewById(R.id.temp1)).setText(firstOne.get("temp").toString());
+            ((TextView)view.findViewById(R.id.temp1)).setText(Statics.tempInFwithF(firstOne.get("temp").toString()));
             ((TextView)view.findViewById(R.id.humiditypercent)).setText(firstOne.get("humidity").toString() + "%");
             ((TextView)view.findViewById(R.id.windspeed)).setText(firstOne.get("wind").toString() + "mph");
             ((TextView)view.findViewById(R.id.visibility)).setText(firstOne.get("visibility").toString() + "mi");
@@ -153,15 +153,14 @@ public class PlaceTodayWeatherFragment extends Fragment {
             ((TextView)view.findViewById(R.id.locationA)).setText(mLocation);
 
             ((ImageView)view.findViewById(R.id.statusImg)).setImageResource(Statics.drawableMap.get(firstOne.get("status").toString()));
-            double pressure = Double.parseDouble(firstOne.get("pressure").toString());
-            int tt = (int) (pressure/100);
-            ((TextView)view.findViewById(R.id.pressure)).setText(tt + ".56inHg");
+            double tt = Statics.Twodecimal(firstOne.get("pressure").toString());
+            ((TextView)view.findViewById(R.id.pressure)).setText(tt + "inHg");
 
             ListView listView = view.findViewById(R.id.listview);
             listView.setAdapter(new BaseAdapter() {
                 @Override
                 public int getCount() {
-                    return 16;
+                    return 15;
                 }
 
                 @Override
@@ -188,8 +187,8 @@ public class PlaceTodayWeatherFragment extends Fragment {
 
                         ((TextView)v.findViewById(R.id.date_1)).setText(formattedDate);
                         ((ImageView)v.findViewById(R.id.row_img)).setImageResource(Statics.getImage("" + firstOne.getString("status")));
-                        ((TextView)v.findViewById(R.id.templow)).setText(firstOne.get("tempmin").toString());
-                        ((TextView)v.findViewById(R.id.temphigh)).setText(firstOne.get("tempmax").toString());
+                        ((TextView)v.findViewById(R.id.templow)).setText("" + Statics.tempInF(firstOne.get("tempmin").toString()));
+                        ((TextView)v.findViewById(R.id.temphigh)).setText("" + Statics.tempInF(firstOne.get("tempmax").toString()));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

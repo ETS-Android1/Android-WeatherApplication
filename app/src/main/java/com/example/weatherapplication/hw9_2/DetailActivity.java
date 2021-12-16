@@ -39,14 +39,15 @@ public class DetailActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(jsonArray.get(0).toString());
 
                 date = jsonObject.getString("date");
-                temp = jsonObject.getString("temp");
+                temp = "" + Statics.tempInF(jsonObject.getString("temp"));
                 weather = Statics.stateMap.get("" + jsonObject.get("status"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
 
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/share?text=The Temperature in " + Statics.locationDetails + " on "+date+" is " + temp + ". The weather conditions are "+weather+"&hashtags=CSCI571WeatherForecast&url= "));
+//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/share?text=The Temperature in " + Statics.locationDetails + " on "+date+" is " + temp + ". The weather conditions are "+weather+"&hashtags=CSCI571WeatherForecast&url= "));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/share?text=Check Out " + Statics.locationDetails + "’s Weather! It is " + temp + "°F&hashtags=CSCI571WeatherSearch&url= "));
             startActivity(browserIntent);
         });
 

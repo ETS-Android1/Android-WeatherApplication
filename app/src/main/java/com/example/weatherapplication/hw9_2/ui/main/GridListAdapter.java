@@ -85,7 +85,7 @@ public class GridListAdapter implements ListAdapter {
                     break;
                 case 1:
                     ((ImageView)(v.findViewById(R.id.image))).setImageResource(R.drawable.gauge);
-                    ((TextView)(v.findViewById(R.id.textview))).setText(jsonObject.get("pressure") + " inHg\n Pressure");
+                    ((TextView)(v.findViewById(R.id.textview))).setText(Statics.Twodecimal(jsonObject.get("pressure").toString()) + " inHg\n Pressure");
 
                     break;
                 case 2:
